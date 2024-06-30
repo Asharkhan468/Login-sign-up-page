@@ -1,22 +1,27 @@
-const firstName = document.querySelector("#FirstName");
-const lastName = document.querySelector("#lastName");
-const email = document.querySelector("#Email");
-const password = document.querySelector("#Password");
-const confirmPassword = document.querySelector("#Confirm password");
-const btn = document.querySelector("#btn-Submit");
+const firstName = document.getElementById("floating_first_name");
+const lastName = document.getElementById("floating_last_name");
+const email = document.getElementById("floating_email");
+const password = document.getElementById("floating_password");
+const confirmPassword = document.getElementById("floating_repeat_password");
+const btn = document.getElementById("SubmitButton");
 
- btn.addEventListener("click", function(event) {
-    const email = document.querySelector("#Email");
-    const password = document.querySelector("#Password");
+ btn.addEventListener('click' , (event)=>{
+   event.preventDefault();
 
-     event.preventDefault();
-     
-     let userData={
-     userEmail:email.value,
-        password:password.value
-     }
+ let userData = [{
+      userName:firstName.value,
+      userEmail: email.value,
+      password: password.value
+   }];
 
-     console.log(userData);
-    
-    });
+   localStorage.setItem('data' , JSON.stringify(userData));
 
+
+});
+
+
+
+
+ 
+   
+ 
