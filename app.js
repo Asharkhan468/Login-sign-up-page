@@ -16,6 +16,8 @@ const btn = document.getElementById("SubmitButton");
 
    localStorage.setItem('data' , JSON.stringify(userData));
 
+   window.location='login in.html'
+
 
 });
 
