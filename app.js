@@ -16,10 +16,19 @@ const btn = document.getElementById("SubmitButton");
 
    localStorage.setItem('data' , JSON.stringify(userData));
 
-   window.location='login in.html'
+  //  window.location='login in.html'
+
+   let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if(emailPattern.test(email.value)){
+    
+  }
+
 
 
 });
+
+
 
 
 
