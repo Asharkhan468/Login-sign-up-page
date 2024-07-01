@@ -4,7 +4,6 @@ console.log(storeData[0]);
 const loginEmail = document.getElementById("email");
 const loginPassword = document.getElementById("password");
 const btn = document.getElementById("btn-submit");
-const div =  document.getElementById('div');
 
 btn.addEventListener("click", (event) => {
   event.preventDefault();
@@ -14,12 +13,11 @@ btn.addEventListener("click", (event) => {
     loginPassword.value === storeData[0].password
   ) {
     window.location = "quiz app.html";
-  } else if (loginEmail.value === "" && loginPassword.value === "") {
-    alert('Please fill all the field');
-  } else if(password.value==''|| password.value != storeData[0].password) {
-    alert('Please Enter the password Again')
-
-  }else{
-    alert('Error')
+  } else if (loginEmail.value !== storeData[0].userEmail) {
+    alert("Wrong email")
+  }else if(loginPassword.value !== storeData[0].password){
+    alert('Wrong password')
+  }else if(loginEmail.value=='' && loginPassword.value==''){
+    alert('Please Enter the data!')
   }
 });
