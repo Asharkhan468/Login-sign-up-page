@@ -14,38 +14,41 @@ const btn = document.getElementById("SubmitButton");
    let firstNamePattern = /^[A-Za-z][A-Za-z'-]{1,}$/;
    let lastNamePattern = /^[A-Za-z'-]{2,50}$/;
    let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-   let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+   let passwordPattern = /^(?=.*\d)[a-z\d!@#$%^&*()\-_=+{};:,<.>]{1,12}$/;
+
 
    if (
      emailPattern.test(email.value) &&
-     passwordPattern.test(password.value) &&
+     passwordPattern.test(password.value.toLowerCase()) &&
      firstNamePattern.test(firstName.value) &&
-     lastNamePattern.test(lastName.value)
-     ) {
-    var modal = document.getElementById("successModal");
-    modal.style.display = "block";
+     lastNamePattern.test(lastName.value) && password.value===confirmPassword.value
+   ) {
+     var modal = document.getElementById("successModal");
+     modal.style.display = "block";
 
-    // Close the modal when the user clicks on the close button or the "Close" button
-    var closeBtn = document.querySelector(".close");
-    var closeModalBtn = document.getElementById("closeBtn");
+     // Close the modal when the user clicks on the close button or the "Close" button
+     var closeBtn = document.querySelector(".close");
+     var closeModalBtn = document.getElementById("closeBtn");
 
-    closeBtn.onclick = function () {
-      modal.style.display = "none";
-      window.location = "login in.html";
-    };
-   
+     closeBtn.onclick = function () {
+       modal.style.display = "none";
+       window.location = "login in.html";
+     };
 
-    closeModalBtn.onclick = function () {
-      modal.style.display = "none";
-      window.location = "login in.html";
-    };
+     closeModalBtn.onclick = function () {
+       modal.style.display = "none";
+       window.location = "login in.html";
+     };
 
-    // Close the modal when the user clicks anywhere outside of the modal
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    };
+     // Close the modal when the user clicks anywhere outside of the modal
+     window.onclick = function (event) {
+       if (event.target == modal) {
+         modal.style.display = "none";
+       }
+     };
+
+     //-------- Store User data in Array of Object into local storage---------
+
      let userData = [
        {
          userName: firstName.value + " " + lastName.value,
@@ -55,8 +58,6 @@ const btn = document.getElementById("SubmitButton");
      ];
 
      localStorage.setItem("data", JSON.stringify(userData));
-
-    
    } else if (email.value === "") {
      alert("Please Enter Email Address!");
    } else {
@@ -69,9 +70,7 @@ const btn = document.getElementById("SubmitButton");
 
 
 
-  //-------- Store User data in Array of Object into local storage---------
 
-  //  window.location='login in.html'
 
 
 
@@ -92,13 +91,6 @@ const btn = document.getElementById("SubmitButton");
 
 
 });
-
-
-
-
-
-
-
 
  
    
