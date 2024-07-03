@@ -14,3 +14,18 @@
     font-size: smaller;
 
 }
+
+@media(max-width:768px){
+  .resp{
+    
+   margin-left: 15px;
+  margin-right: 15px; 
+  
+}
+
+.head-resp{
+    font-size: 25px;
+    font: 1.5em sans-serif;
+}
+
+}
