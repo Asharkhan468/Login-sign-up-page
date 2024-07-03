@@ -12,24 +12,11 @@ body, html {
   height: 100%;
   background: #f3f4f6;
 }
-/* 
-form {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-} */
 
 h2 {
   margin-bottom: 20px;
 }
 
-/* label {
-  display: inline-block;
-  width: 100px;
-  text-align: right;
-} */
 
 input {
   margin-bottom: 10px;
@@ -103,4 +90,9 @@ button:hover {
 
 #closeBtn:hover {
   background: #0056b3;
+}
+
+.first-Name-error{
+  color: #ff0000;
+  font-size: 12px;
 }

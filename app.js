@@ -5,6 +5,18 @@ const password = document.getElementById("floating_password");
 const confirmPassword = document.getElementById("floating_repeat_password");
 const btn = document.getElementById("SubmitButton");
 
+
+//Error message started //
+
+const firstNameError = document.getElementById("firstNameError");
+const LastNameError = document.getElementById("LastNameError");
+const RegEmailError = document.getElementById("RegEmailError");
+const RegPasswordError = document.getElementById("RegPasswordError");
+const RegConfPasswordError = document.getElementById("RegConfPasswordError");
+
+//Error message ended //
+
+
  btn.addEventListener('click' , (event)=>{
 
    event.preventDefault();
@@ -23,6 +35,11 @@ const btn = document.getElementById("SubmitButton");
      firstNamePattern.test(firstName.value) &&
      lastNamePattern.test(lastName.value) && password.value===confirmPassword.value
    ) {
+    firstNameError.innerHTML=""
+    LastNameError.innerHTML=""
+    RegEmailError.innerHTML=""
+    RegPasswordError.innerHTML=""
+    RegConfPasswordError.innerHTML=""
      var modal = document.getElementById("successModal");
      modal.style.display = "block";
 
@@ -58,10 +75,36 @@ const btn = document.getElementById("SubmitButton");
      ];
 
      localStorage.setItem("data", JSON.stringify(userData));
-   } else if (email.value === "") {
-     alert("Please Enter Email Address!");
-   } else {
-     alert("Some problem in the form");
+   } else if (email.value == "") {
+     RegEmailError.innerHTML=""
+     RegEmailError.innerHTML="Email is Required"
+
+   } else if(password.value == "") {
+    RegPasswordError.innerHTML = "";
+    RegPasswordError.innerHTML = "Password is Required";
+     
+   }else if(confirmPassword.value !== password.value && confirmPassword.value !== "" ){
+
+    RegConfPasswordError.innerHTML="";
+    RegConfPasswordError.innerHTML="Password Do not match";
+
+   }else if((email.value == "" && password.value == "")){
+
+    RegEmailError.innerHTML = "";
+    RegEmailError.innerHTML = "Email is Required";
+
+    RegPasswordError.innerHTML = "";
+    RegPasswordError.innerHTML = "Password is Required";
+
+   }else if(firstName.value =="" && lastName.value == ""){
+    firstNameError.innerHTML="";
+    firstNameError.innerHTML = "This is Required";
+
+    LastNameError.innerHTML = ""
+    LastNameError.innerHTML = "This is Required"
+
+   }else if(confirmPassword.value == ""){
+    RegConfPasswordError.innerHTML="Confirm Password is Required"
    }
 
 
