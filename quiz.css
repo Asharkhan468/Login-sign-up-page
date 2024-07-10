@@ -104,7 +104,7 @@ body {
 
 /* footer started */
 .footer {
-    background-color: #6200ea;
+    background-color: #90e0ef;
     padding: 10px 0;
     position: fixed;
     bottom: 0;
@@ -121,7 +121,7 @@ body {
 .footer-button {
     background: none;
     border: none;
-    color: white;
+    color: #1B1B29;
     font-size: 1.5em;
     cursor: pointer;
     transition: color 0.3s;
