@@ -125,6 +125,14 @@ axios(
 
 
 
+  let popup = document.getElementById("popup");
+  let popupMessage = document.getElementById("popup-message");
+  let popupDescription = document.getElementById("popup-description");
+  let resultsButton = document.getElementById("results-button");
+
+
+
+
 
 
   //footer started
@@ -136,17 +144,17 @@ axios(
 
     homeButton.addEventListener("click", () => {
       // Logic to navigate to home
-      alert("Home button clicked");
+      // alert("Home button clicked");
     });
 
     categoriesButton.addEventListener("click", () => {
       // Logic to navigate to categories
-      alert("Categories button clicked");
+      // alert("Categories button clicked");
     });
 
     profileButton.addEventListener("click", () => {
       // Logic to navigate to profile
-      alert("Profile button clicked");
+      // alert("Profile button clicked");
     });
   });
 

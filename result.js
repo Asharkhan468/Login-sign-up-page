@@ -1,92 +1,43 @@
-let resultData = JSON.parse(localStorage.getItem('result'))
+let resultData = JSON.parse(localStorage.getItem('cz'))
 
 console.log(resultData);
 
-const marks = document.querySelector("#marks");
-
-marks.innerHTML=`Your Score: ${resultData.result} / 100`
-
-// Get the modal
-var modal = document.getElementById("passModal");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close-1")[0];
-
-// Function to display the modal
-function showModal() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
+let marks = document.querySelector("#marks")
 
 
+// Get references to the HTML elements
+let resultCard = document.getElementById('result-card');
+let resultMessage = document.getElementById('result-message');
+let resultDescription = document.getElementById('result-description');
 
-
-
-
-
-
-
-
-
-
-
-
-
-// Get the modal
-var modal = document.getElementById("failModal");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// Function to display the modal
-function showModalFail() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Set the content based on the quiz result
 
 
 
 if (resultData.result >=40) {
-  window.onload = function() {
-    showModal();
-  }
+  resultCard.classList.add("passed");
+  resultMessage.textContent = "Congratulations!";
+  resultDescription.textContent = "You passed the quiz.";
+  marks.innerHTML=`Your Score:${resultData.result}/100`;
+  
+  
 } else {
-    
-        showModalFail();
-      
-    
+   resultCard.classList.add("failed");
+   resultMessage.textContent = "Sorry, you failed.";
+   resultDescription.textContent = "Please try again.";
+    marks.innerHTML = `Your Score: ${resultData.result}/100`;    
 }
 
 
 
+const againQuiz = document.querySelector("#again-quiz");
+
+
+againQuiz.addEventListener('click' , ()=>{
+
+  window.location="quiz app.html";
+
+})
 
 
 
@@ -94,9 +45,6 @@ if (resultData.result >=40) {
 
 
 
-// if(resultData.result >= 40){
-//     console.log("Congratulation you are passed");
-// }else{
-//     console.log("Malik fail hogye app!");
-// }
+
+
 
