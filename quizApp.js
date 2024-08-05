@@ -1,4 +1,11 @@
 
+import { auth } from "./config.js";
+
+import {
+  signOut,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
 //Navbar started
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,9 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-
-// localStorage.getItem('')
 
 
 
@@ -60,14 +64,6 @@ let renderData = (arr)=>{
 
   div.innerHTML = `<h4>Q${index + 1}: ${arr[index].question}</h4>`;
 
-  // shuffleArray(answer).map((item)=>{
-  //    ul.innerHTML = `<li class="list-none">
-  //       <input type="radio" name="choice" class="choice" id=${item} value=${item}><label for=${item}> ${item}</label>
-  //       </li>`;
-
-
-  // })
-
     ul.innerHTML = `
       ${shuffleArray(answer).map(
         (items) => `
@@ -93,12 +89,30 @@ nextBtn.addEventListener("click", () => {
     }
   });
 
+  const ResultModal = document.querySelector('#result-modal');
+
   if (index < question.length - 1) {
     index += 1;
     renderData(question)
   } else {
-    alert("Go to Result");
-    window.location = "result.html";
+
+     document.getElementById("popup").style.display = "flex";
+  
+   
+
+   // Function to close the popup
+
+ document.querySelector("#closePopup").addEventListener('click' , ()=>{
+
+     document.getElementById("popup").style.display = "none";
+   })
+  
+   const goResults = document.querySelector('#goToResults');
+goResults.addEventListener('click' , ()=>{
+
+   window.location = "result.html";
+
+})
     localStorage.setItem(
       "cz",
       JSON.stringify({
@@ -113,7 +127,6 @@ axios(
   "https://opentdb.com/api.php?amount=10&category=18&difficulty=easy&type=multiple"
 )
   .then((resp) => {
-    console.log(resp.data.results);
     question = resp.data.results;
     renderData(question)
   })
@@ -125,41 +138,165 @@ axios(
 
 
 
-  let popup = document.getElementById("popup");
-  let popupMessage = document.getElementById("popup-message");
-  let popupDescription = document.getElementById("popup-description");
-  let resultsButton = document.getElementById("results-button");
+
+
+  
+
+
+ //Logout user
+
+
+ const modal = document.getElementById("logoutModal");
+ const logoutBtn = document.querySelector("#logout-btn");
+ const closeBtn = document.querySelector(".logout-close-btn");
+ const confirmLogout = document.getElementById("confirmLogout");
+ const cancelLogout = document.getElementById("cancelLogout");
 
 
 
 
 
+// Show modal
+logoutBtn.addEventListener('click' , ()=>{
 
-  //footer started
+  modal.style.display = 'flex';
+})
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const homeButton = document.getElementById("homeButton");
-    const categoriesButton = document.getElementById("categoriesButton");
-    const profileButton = document.getElementById("profileButton");
 
-    homeButton.addEventListener("click", () => {
-      // Logic to navigate to home
-      // alert("Home button clicked");
+// Close modal
+closeBtn.addEventListener('click' , ()=>{
+
+  modal.style.display = 'none';
+})
+
+
+cancelLogout.addEventListener('click' , ()=>{
+
+  modal.style.display = 'none';
+})
+
+
+confirmLogout.addEventListener('click' , ()=>{
+
+  signOut(auth)
+    .then(() => {
+      window.location = "login in.html";
+    })
+
+    .catch((error) => {
+      console.error("Sign out error:", error);
     });
 
-    categoriesButton.addEventListener("click", () => {
-      // Logic to navigate to categories
-      // alert("Categories button clicked");
-    });
+})
 
-    profileButton.addEventListener("click", () => {
-      // Logic to navigate to profile
-      // alert("Profile button clicked");
-    });
+
+window.addEventListener('click' , (event)=>{
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+
+})
+    
+     
+     
+
+     
+  
+
+     
+
+
+      
+
+       
+
+
+  
+ 
+
+
+
+
+  
+
+
+
+  
+       
+         
+ 
+
+   
+
+  
+   
+
+  
+
+
+
+
+
+  //On auth state change
+
+  //user profile
+
+  const profile = document.querySelector(".profile-pic");
+  const profileName = document.querySelector("#modal-user-name");
+  const userImage = document.querySelector('#modal-user-image');
+
+
+  //Get userData from local storage
+
+
+  let userData = JSON.parse(localStorage.getItem('data'));
+
+  
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    profile.src = `${user.photoURL}`;
+    userImage.src=`${user.photoURL}`;
+    profileName.innerHTML=`${user.displayName}`
+    const uid = user.uid;
+   
+  console.log(uid);
+  
+   
+  }else if(true){
+    profile.src = "https://cdn-icons-png.flaticon.com/512/6325/6325109.png";
+    userImage.src = "https://cdn-icons-png.flaticon.com/512/6325/6325109.png";
+    profileName.innerHTML = `${userData[0].userName}`;
+
+
+  }
+   else {
+    window.location="login in.html"
+    
+  }
+});
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const userProfile = document.getElementById("userProfile");
+  const userModal = document.getElementById("userModal");
+  const closeBtn = document.getElementById("closeBtn");
+
+  userProfile.addEventListener("click", () => {
+    userModal.classList.add("show");
+    document.querySelector(".modal-content").classList.add("show");
   });
 
+  closeBtn.addEventListener("click", () => {
+    userModal.classList.remove("show");
+    document.querySelector(".modal-content").classList.remove("show");
+  });
 
-
-  //footer ended
-
-
+  userModal.addEventListener("click", (e) => {
+    if (e.target === userModal) {
+      userModal.classList.remove("show");
+      document.querySelector(".modal-content").classList.remove("show");
+    }
+  });
+});

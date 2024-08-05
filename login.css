@@ -15,6 +15,46 @@
 
 }
 
+/*Google btn styling */
+
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.google-login-btn {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4285F4;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.google-login-btn:hover {
+    background-color: #357ae8;
+    transform: scale(1.05);
+}
+
+.google-login-btn:active {
+    background-color: #3367d6;
+    transform: scale(0.95);
+}
+
+.google-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
 @media(max-width:768px){
   .resp{
     
